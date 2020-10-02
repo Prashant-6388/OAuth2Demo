@@ -3,15 +3,17 @@ package com.pc.OAuthDemo.config;
 
 import com.mysql.cj.xdevapi.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerEndpointsConfiguration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
@@ -25,9 +27,11 @@ import java.util.Objects;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+/*    @Autowired
+    AuthenticationManager authenticationManager;*/
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -35,16 +39,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Value("${security.signing-key}")
+    private String signingKey;
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpointsConfigurer) throws Exception {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("<signedKey>");
+        converter.setSigningKey(signingKey);
 
         endpointsConfigurer.tokenStore(tokenStore(jdbcTemplate))
                 .reuseRefreshTokens(false)
                 .accessTokenConverter(converter)
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .authenticationManager(authenticationManagerBuilder.getOrBuild())
+                .userDetailsService(userDetailsService).getTokenGranter();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class UserController {
         authUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
         authUser.setRoles(Collections.singletonList(userRoleRepo.findByRoleNameContaining("USER")));
 
-        Optional<AuthUser> optUser = userRepo.findByUserNameOrEmail(userDto.getUsername(),userDto.getEmail());
+        Optional<AuthUser> optUser = userRepo.findByUserNameOrEmail(userDto.getUserName(),userDto.getEmail());
         if(!optUser.isPresent())
             return userRepo.save(authUser);
         throw new RuntimeException("user already exists");

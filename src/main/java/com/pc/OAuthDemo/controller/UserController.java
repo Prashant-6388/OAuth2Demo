@@ -1,10 +1,10 @@
 package com.pc.OAuthDemo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pc.OAuthDemo.dto.UserDto;
 import com.pc.OAuthDemo.model.AuthUser;
 import com.pc.OAuthDemo.repository.UserRepo;
 import com.pc.OAuthDemo.repository.UserRoleRepository;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,9 +1,7 @@
 package com.pc.OAuthDemo.config;
 
 
-import com.mysql.cj.xdevapi.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +25,9 @@ import java.util.Objects;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-/*    @Autowired
-    AuthenticationManager authenticationManager;*/
+
+    @Autowired
+    AuthenticationManager authManager;
 
     @Autowired
     private AuthenticationManagerBuilder authenticationManagerBuilder;
@@ -50,7 +49,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpointsConfigurer.tokenStore(tokenStore(jdbcTemplate))
                 .reuseRefreshTokens(false)
                 .accessTokenConverter(converter)
-                .authenticationManager(authenticationManagerBuilder.getOrBuild())
+                .authenticationManager(authManager)
                 .userDetailsService(userDetailsService).getTokenGranter();
     }
 

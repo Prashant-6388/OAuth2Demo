@@ -24,6 +24,13 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .httpBasic();
+                .authorizeRequests()
+                .antMatchers("/oauth/token").permitAll()
+                .antMatchers("/oauth/check_token").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic()
+
+        ;
     }
 }

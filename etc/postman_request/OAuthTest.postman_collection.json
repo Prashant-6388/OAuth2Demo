@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "fb023540-1ecf-4373-ad82-88f6a199c817",
+		"name": "OAuthTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"prashant\",\n\t\"password\":\"prashant123\",\n\t\"email\":\"test@test.com\",\n\t\"mobile\":\"1234567890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/oauth/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_jwt_access_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "temp",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/oauth/token?username=prashant&password=prashant123&grant_type=password",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "prashant"
+						},
+						{
+							"key": "password",
+							"value": "prashant123"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "temp",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/oauth/check_token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE2Nzk1OTIsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiMDU5MGJiZDEtNDA5Yi00ZDA3LWFkY2UtYjA5NGU4ZmYxMzc1IiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiJmNTMyZjI1Zi01MTJkLTQ2ZWEtYTE5ZS01MzI2ZmJhOWU5NjIifQ.3MC2jpRdJzA1a-FbIDfsrR9nXDNJIQw8lFzuqgmueHA",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE2Nzk1OTIsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiMDU5MGJiZDEtNDA5Yi00ZDA3LWFkY2UtYjA5NGU4ZmYxMzc1IiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiJmNTMyZjI1Zi01MTJkLTQ2ZWEtYTE5ZS01MzI2ZmJhOWU5NjIifQ.3MC2jpRdJzA1a-FbIDfsrR9nXDNJIQw8lFzuqgmueHA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "temp",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/oauth/check_token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE2NzgwOTIsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiZjUzMmYyNWYtNTEyZC00NmVhLWExOWUtNTMyNmZiYTllOTYyIiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.pxDAouDfwugMOho9CROToLrEQGY4T7R1ysyWEnjNhNs",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE2NzgwOTIsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiZjUzMmYyNWYtNTEyZC00NmVhLWExOWUtNTMyNmZiYTllOTYyIiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.pxDAouDfwugMOho9CROToLrEQGY4T7R1ysyWEnjNhNs"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "access_resouces_with_token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE3MTg2ODAsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiMGQ2YTlhMDYtZTlkNC00NGYyLTllOTktMjEzYjhmMmQ4ODk0IiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Q24XBNqgm24Ag8asmMWCmjzMMDkI9Se31w323R5eum4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/users/me",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"me"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE3MTg2ODAsInVzZXJfbmFtZSI6InByYXNoYW50IiwianRpIjoiMGQ2YTlhMDYtZTlkNC00NGYyLTllOTktMjEzYjhmMmQ4ODk0IiwiY2xpZW50X2lkIjoidGVzdCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Q24XBNqgm24Ag8asmMWCmjzMMDkI9Se31w323R5eum4",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "token",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

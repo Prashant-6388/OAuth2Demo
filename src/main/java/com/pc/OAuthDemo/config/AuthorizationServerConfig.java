@@ -30,9 +30,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     AuthenticationManager authManager;
 
     @Autowired
-    private AuthenticationManagerBuilder authenticationManagerBuilder;
-
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired

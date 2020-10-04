@@ -30,11 +30,14 @@ We have configured db based authentication by implementing UserDetailsService of
 
 You might want to enable `spring.datasource.initialization-mode` in application.properties to execute queries data.sql which will setup all required tables and data for executing post requests.
  
-etc folder contains json exported from Postman, you can import it into you postman app and execute request.
-
 For implementating resources server configuration you will need to look at ResourceServerConfig.java
 
 Form based login is disabled so you will be able to access authorization and resource server only by post requests.
+
+Branchs:
+oauthServer_and_resource_server branch contains running code for Authorization and Resource creation using OAuth2.
+enable_cors branch is specifically for testing purpose and to allow CORS when request resources from localhost.
+react_oauth2_demo contains code for basic sample request from React App. 
 
 Have Fun :) !!!! 
 

@@ -34,6 +34,8 @@ For implementating resources server configuration you will need to look at Resou
 
 Form based login is disabled so you will be able to access authorization and resource server only by post requests.
 
+etc folder contains requests that can be imported directly into postman app.
+
 Branchs:
 oauthServer_and_resource_server branch contains running code for Authorization and Resource creation using OAuth2.
 enable_cors branch is specifically for testing purpose and to allow CORS when request resources from localhost.

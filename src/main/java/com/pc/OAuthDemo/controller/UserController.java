@@ -34,7 +34,7 @@ public class UserController {
         authUser.setRoles(Collections.singletonList(userRoleRepo.findByRoleNameContaining("USER")));
 
         Optional<AuthUser> optUser = userRepo.findByUserNameOrEmail(userDto.getUserName(),userDto.getEmail());
-        if(!optUser.isPresent())
+        if(optUser.isEmpty())
             return userRepo.save(authUser);
         throw new RuntimeException("user already exists");
     }

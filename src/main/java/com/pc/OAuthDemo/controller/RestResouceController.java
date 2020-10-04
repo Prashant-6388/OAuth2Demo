@@ -1,12 +1,11 @@
 package com.pc.OAuthDemo.controller;
 
 import com.pc.OAuthDemo.dto.UserDto;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.security.core.userdetails.User;
 
 @Controller
 public class RestResouceController {

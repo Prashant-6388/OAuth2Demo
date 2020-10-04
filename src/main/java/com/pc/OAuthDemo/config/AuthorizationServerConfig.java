@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Objects;
 
@@ -28,9 +29,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     AuthenticationManager authManager;
-
-    @Autowired
-    private AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -55,7 +53,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer securityConfigurer) throws Exception {
-        securityConfigurer.tokenKeyAccess("hasAuthority('ROLE_TRUSTED_CLIENT')")
+        securityConfigurer.tokenKeyAccess("permitAll()")
                 .checkTokenAccess("hasAuthority('ROLE_TRUSTED_CLIENT')");
     }
 
